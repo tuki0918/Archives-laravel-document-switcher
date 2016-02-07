@@ -16,5 +16,10 @@
       "19": "./images/icon19.png"
     },
     "default_popup": "./popup.html"
-  }
+  },
+
+  "permissions": [
+    "tabs",
+    "storage"
+  ]
 }
