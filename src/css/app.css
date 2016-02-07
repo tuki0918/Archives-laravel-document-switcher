@@ -2,3 +2,16 @@ html {
     width: 450px;
     height: 500px;
 }
+
+.list-group-item .icon {
+    font-size: 20px;
+}
+
+.toolbar-header {
+    padding: 5px 0px;
+}
+
+.btn-default.hidden {
+    background-color: #ddd;
+    background-image: none;
+}
