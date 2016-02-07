@@ -16,6 +16,21 @@ class Control extends React.Component {
     this.onBtn = this.onBtn.bind(this)
   }
 
+  componentDidMount() {
+    let self = this
+    // get option
+    chrome.storage.local.get(['version'], function(storage) {
+      if (chrome.runtime.lastError) {
+        console.log('storage get err!');
+        return;
+      }
+      let data = {
+        version: storage.version
+      }
+      self.setState(data)
+    })
+  }
+
   onClick() {
     if (this.props.isActive) {
       let newURL = UrlBuilder.create(this.props.url, this.state.version)
@@ -27,6 +42,10 @@ class Control extends React.Component {
     let data = {
       version: e.target.value
     }
+
+    // store
+    chrome.storage.local.set(data, function () {})
+
     this.setState(data)
   }
 
