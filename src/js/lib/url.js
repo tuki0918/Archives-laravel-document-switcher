@@ -25,7 +25,12 @@ exports.convert = function(str, version) {
   }
 
   if (pattern === FLG_JPN_DOC) {
-    return false
+    let path = current.path.replace(/^.*\//, '')
+    let hash = current.hash ? current.hash : ''
+    let url  = TEMPLATE_JPN_DOC_URL
+    url = url.replace(KEY_VERSION, version)
+    url = url.replace(KEY_PATH, path+hash)
+    return url
   }
 
   return false
