@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-import Root from './components/root'
+import { Router } from 'react-router'
+import * as router from './routes'
 
 ReactDOM.render(
-  <Root />,
+  <Router routes={router.routes} />,
   document.getElementById('app')
 );

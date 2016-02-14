@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import fetch from 'isomorphic-fetch';
 
 import Control from './control'
@@ -48,6 +49,9 @@ class Root extends React.Component {
     return (
       <div className="window">
         <Control {...this.state} />
+        <Link to="/favorite">お気に入り</Link>
+        <Link to="/history">履歴</Link>
+        {this.props.children}
       </div>
     )
   }
