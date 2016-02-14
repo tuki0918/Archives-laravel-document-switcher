@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Button from './button'
-import UrlBuilder from '../lib/url-builder'
+import url from '../lib/url'
 
 class Control extends React.Component {
 
@@ -33,7 +33,7 @@ class Control extends React.Component {
 
   onClick() {
     if (this.props.isActive) {
-      let newURL = UrlBuilder.create(this.props.url, this.state.version)
+      let newURL = url.convert(this.props.url, this.state.version)
       chrome.tabs.create({ url: newURL });
     }
   }
