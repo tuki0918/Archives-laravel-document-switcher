@@ -20,29 +20,29 @@ class Root extends React.Component {
     // GET Current Tab URL
     chrome.tabs.query(
       { active: true, windowId: chrome.windows.WINDOW_ID_CURRENT },
-      function (tabs) {
+      tabs => {
         let currentUrl = tabs[0].url;
         let active = url.check(currentUrl)
         this.setState({
           url: currentUrl,
           isActive: active
         })
-      }.bind(this)
+      }
     )
 
     // GET Select Version Data
     fetch('./data/versions.json')
-      .then(function(response) {
+      .then(response => {
         return response.json()
       })
-      .then(function(json) {
+      .then(json => {
         this.setState({
           versions: json
         })
-      }.bind(this))
-      .catch(function(err) {
+      })
+      .catch(err => {
         console.log(err)
-      }.bind(this))
+      })
   }
 
   render () {
