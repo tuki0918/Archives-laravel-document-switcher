@@ -2,12 +2,12 @@
   "name": "laravel-document-switcher",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "tuki0918 <tuki0918@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tuki0918/laravel-document-switcher.git"
+  },
   "dependencies": {
     "history": "^1.17.0",
     "isomorphic-fetch": "^2.2.1",
@@ -20,7 +20,10 @@
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
-    "gulp": "^3.9.0",
-    "vinyl-source-stream": "^1.1.0"
+    "watchify": "^3.7.0"
+  },
+  "scripts": {
+    "build": "browserify -t babelify src/js/app.js -o src/dist/bundle.js",
+    "watch": "watchify -v -t babelify src/js/app.js -o src/dist/bundle.js"
   }
 }
