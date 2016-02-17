@@ -17,9 +17,9 @@ class Control extends React.Component {
   }
 
   componentDidMount() {
-    let self = this
+
     // get option
-    chrome.storage.local.get(['version'], function(storage) {
+    chrome.storage.local.get(['version'], storage => {
       if (chrome.runtime.lastError) {
         console.log('storage get err!');
         return;
@@ -27,7 +27,7 @@ class Control extends React.Component {
       let data = {
         version: storage.version
       }
-      self.setState(data)
+      this.setState(data)
     })
   }
 
