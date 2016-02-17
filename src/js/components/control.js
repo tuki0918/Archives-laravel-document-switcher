@@ -20,14 +20,11 @@ class Control extends React.Component {
 
     // get option
     chrome.storage.local.get(['current'], storage => {
-      if (chrome.runtime.lastError) {
-        console.log('storage get err!');
-        return;
+      if (!chrome.runtime.lastError) {
+        this.setState({
+          current: storage.current
+        })
       }
-      let data = {
-        current: storage.current
-      }
-      this.setState(data)
     })
   }
 
@@ -43,10 +40,10 @@ class Control extends React.Component {
       current: e.target.value
     }
 
-    // store
-    chrome.storage.local.set(data, function () {})
-
     this.setState(data)
+
+    // store
+    chrome.storage.local.set(data)
   }
 
   render () {
