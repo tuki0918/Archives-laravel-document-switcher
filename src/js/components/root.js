@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import fetch from 'isomorphic-fetch';
+import fetch from 'isomorphic-fetch'
 
 import Control from './control'
 import url from '../lib/url'
@@ -9,6 +9,7 @@ class Root extends React.Component {
 
   constructor(props) {
     super(props)
+
     this.state = {
       url: '',
       versions: [],
@@ -31,7 +32,7 @@ class Root extends React.Component {
     )
 
     // GET Select Version Data
-    fetch('./data/versions.json')
+    fetch('/api/versions.json')
       .then(response => {
         return response.json()
       })
