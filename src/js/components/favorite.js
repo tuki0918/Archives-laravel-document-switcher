@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 class Favorite extends React.Component {
 
@@ -7,8 +7,8 @@ class Favorite extends React.Component {
       <div className="favorite">
         favorite
       </div>
-    )
+    );
   }
 }
 
-export default Favorite
+export default Favorite;

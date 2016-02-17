@@ -1,20 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router'
-import fetch from 'isomorphic-fetch'
+import React from 'react';
+import { Link } from 'react-router';
+import fetch from 'isomorphic-fetch';
 
-import Control from './control'
-import url from '../lib/url'
+import Control from './control';
+import url from '../lib/url';
 
 class Root extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       url: '',
       versions: [],
-      isActive: false
-    }
+      isActive: false,
+    };
   }
 
   componentDidMount() {
@@ -23,27 +23,27 @@ class Root extends React.Component {
       { active: true, windowId: chrome.windows.WINDOW_ID_CURRENT },
       tabs => {
         let currentUrl = tabs[0].url;
-        let active = url.check(currentUrl) ? true : false
+        let active = url.check(currentUrl) ? true : false;
         this.setState({
           url: currentUrl,
-          isActive: active
-        })
+          isActive: active,
+        });
       }
-    )
+    );
 
     // GET Select Version Data
     fetch('/api/versions.json')
       .then(response => {
-        return response.json()
+        return response.json();
       })
       .then(json => {
         this.setState({
-          versions: json
-        })
+          versions: json,
+        });
       })
       .catch(err => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   }
 
   render () {
@@ -54,8 +54,8 @@ class Root extends React.Component {
         <Link to="/history">履歴</Link>
         {this.props.children}
       </div>
-    )
+    );
   }
 }
 
-export default Root
+export default Root;
