@@ -9,7 +9,7 @@ class Control extends React.Component {
     super(props)
 
     this.state = {
-      version: '#err#'
+      current: 'master'
     }
 
     this.onClick = this.onClick.bind(this)
@@ -19,13 +19,13 @@ class Control extends React.Component {
   componentDidMount() {
 
     // get option
-    chrome.storage.local.get(['version'], storage => {
+    chrome.storage.local.get(['current'], storage => {
       if (chrome.runtime.lastError) {
         console.log('storage get err!');
         return;
       }
       let data = {
-        version: storage.version
+        current: storage.current
       }
       this.setState(data)
     })
@@ -33,14 +33,14 @@ class Control extends React.Component {
 
   onClick() {
     if (this.props.isActive) {
-      let newURL = url.convert(this.props.url, this.state.version)
+      let newURL = url.convert(this.props.url, this.state.current)
       chrome.tabs.create({ url: newURL });
     }
   }
 
   onBtn(e) {
     let data = {
-      version: e.target.value
+      current: e.target.value
     }
 
     // store
@@ -50,7 +50,8 @@ class Control extends React.Component {
   }
 
   render () {
-    let isActive = (this.props.isActive) ? '' : 'hidden'
+    let isActive = (this.props.isActive) ? true : false
+    let btnClass = (isActive) ? '' : 'hidden'
     return (
       <header className="toolbar toolbar-header">
         <div className="toolbar-actions">
@@ -60,14 +61,14 @@ class Control extends React.Component {
                 <Button key={i}
                         name={version.name}
                         value={version.value}
-                        version={this.state.version}
-                        onClick={this.onBtn}
+                        current={this.state.current}
+                        onBtn={this.onBtn}
                 />
               )
             }, this)}
           </div>
 
-          <button className={ 'btn btn-default ' + isActive } onClick={this.onClick}>
+          <button className={ 'btn btn-default ' + btnClass } onClick={this.onClick}>
             <span className="icon icon-book-open icon-text"></span>
             Move to JP Doc
           </button>
@@ -76,6 +77,16 @@ class Control extends React.Component {
       </header>
     )
   }
+}
+
+Control.propTypes = {
+  url: React.PropTypes.string.isRequired,
+  isActive: React.PropTypes.bool.isRequired,
+  versions: React.PropTypes.array.isRequired
+}
+
+Control.defaultProps = {
+  isActive: false
 }
 
 export default Control

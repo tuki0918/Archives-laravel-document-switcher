@@ -23,7 +23,7 @@ class Root extends React.Component {
       { active: true, windowId: chrome.windows.WINDOW_ID_CURRENT },
       tabs => {
         let currentUrl = tabs[0].url;
-        let active = url.check(currentUrl)
+        let active = url.check(currentUrl) ? true : false
         this.setState({
           url: currentUrl,
           isActive: active
