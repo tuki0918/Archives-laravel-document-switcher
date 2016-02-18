@@ -19,6 +19,13 @@ class Root extends React.Component {
 
   componentDidMount() {
     // GET Current Tab URL
+    this.getCurrentUrl();
+
+    // GET Select Version List
+    this.requestAPIGetVersionList();
+  }
+
+  getCurrentUrl() {
     chrome.tabs.query(
       { active: true, windowId: chrome.windows.WINDOW_ID_CURRENT },
       tabs => {
@@ -30,8 +37,9 @@ class Root extends React.Component {
         });
       }
     );
+  }
 
-    // GET Select Version Data
+  requestAPIGetVersionList() {
     fetch('/api/versions.json')
       .then(response => {
         return response.json();
