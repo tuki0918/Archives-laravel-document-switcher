@@ -2,7 +2,7 @@ import React from 'react';
 
 class History extends React.Component {
 
-  render () {
+  render() {
     return (
       <div className="history">
         history

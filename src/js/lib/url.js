@@ -11,7 +11,7 @@ const KEY_VERSION = '##VERSION##';
 const KEY_PATH    = '##PATH##';
 const TEMPLATE_JPN_DOC_URL = 'http://readouble.com/laravel/' + KEY_VERSION + '/ja/' + KEY_PATH;
 
-exports.convert = function (str, version) {
+exports.convert = function(str, version) {
   let current = this.parse(str);
   let pattern = this.check(str);
 
@@ -36,11 +36,11 @@ exports.convert = function (str, version) {
   return false;
 };
 
-exports.parse = function (str) {
+exports.parse = function(str) {
   return url.parse(str);
 };
 
-exports.check = function (str) {
+exports.check = function(str) {
   if (REGEX_LARAVEL_ENG_DOC_URL.test(str)) {
     return FLG_ENG_DOC;
   }
