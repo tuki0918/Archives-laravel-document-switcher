@@ -31,7 +31,7 @@ class Control extends React.Component {
   onClick() {
     if (this.props.isActive) {
       let newURL = url.convert(this.props.url, this.state.current);
-      chrome.tabs.create({ url: newURL });
+      chrome.tabs.create({url: newURL});
     }
   }
 
@@ -46,14 +46,14 @@ class Control extends React.Component {
     chrome.storage.local.set(data);
   }
 
-  render () {
+  render() {
     let isActive = (this.props.isActive) ? true : false;
     let btnClass = (isActive) ? '' : 'hidden';
     return (
       <header className="toolbar toolbar-header">
         <div className="toolbar-actions">
           <div className="btn-group">
-            {this.props.versions.map(function (version, i) {
+            {this.props.versions.map(function(version, i) {
               return (
                 <Button key={i}
                         name={version.name}

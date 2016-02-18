@@ -12,7 +12,7 @@ class Button extends React.Component {
     this.props.onBtn(e);
   }
 
-  render () {
+  render() {
     let isActive = (this.props.value === this.props.current) ? true : false;
     let btnClass = (isActive) ? 'active' : '';
     return (

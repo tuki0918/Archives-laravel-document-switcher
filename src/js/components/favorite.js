@@ -2,7 +2,7 @@ import React from 'react';
 
 class Favorite extends React.Component {
 
-  render () {
+  render() {
     return (
       <div className="favorite">
         favorite
