@@ -41,19 +41,33 @@ class Tabs extends React.Component {
   }
 
   render() {
+    let tabs = this.state.tabs;
+    let items = '';
+    if (tabs.length) {
+      items = tabs.map(function(tab, i) {
+        return (
+          <Item key={'item-' + i}
+                id={tab.id}
+                url={tab.url}
+                title={tab.title}
+                favIconUrl={tab.favIconUrl}
+          />
+        );
+      });
+    } else {
+      items = (
+        <li className="list-group-item">
+          <div className="media-body">
+            <p>No results found.</p>
+          </div>
+        </li>
+      );
+    }
+
     return (
       <div className="tabs">
         <ul className="list-group">
-          {this.state.tabs.map(function(tab, i) {
-            return (
-              <Item key={'item-' + i}
-                    id={tab.id}
-                    url={tab.url}
-                    title={tab.title}
-                    favIconUrl={tab.favIconUrl}
-                    />
-            );
-          })}
+          {items}
         </ul>
       </div>
     );
