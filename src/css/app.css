@@ -38,6 +38,10 @@ li.list-group-item:hover {
     background-color: #eee;
 }
 
+li.list-group-item.active:hover {
+    background-color: #075EC3;
+}
+
 .alert-warning {
     color: #8a6d3b;
     background-color: #fcf8e3;
