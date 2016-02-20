@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router';
 import fetch from 'isomorphic-fetch';
 
 import Control from './control';
+import Navigation from './navigation';
 import url from '../lib/url';
 
 class Root extends React.Component {
@@ -60,17 +60,7 @@ class Root extends React.Component {
 
         <Control {...this.state} />
 
-        <div className="tab-group">
-          <div className="tab-item">
-            <Link to="/tabs">開いてるタブ</Link>
-          </div>
-          <div className="tab-item">
-            <Link to="/favorite">お気に入り</Link>
-          </div>
-          <div className="tab-item">
-            <Link to="/history">履歴</Link>
-          </div>
-        </div>
+        <Navigation />
 
         <div className="window-content">
           <div className="pane-group">
