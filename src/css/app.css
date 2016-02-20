@@ -48,18 +48,20 @@ li.list-group-item.hidden {
 
 li.list-group-item .close {
     display: none;
+    padding: 0 8px;
     font-size: 24px;
+    color: #999;
+    opacity: .25;
+    transition: opacity 1s ease;
 }
 
 li.list-group-item:hover .close {
     display: block;
-    color: #ddd;
-    transition: color 1s ease;
     cursor: pointer;
 }
 
 li.list-group-item .close:hover {
-    color: #999;
+    opacity: 1;
 }
 
 .alert-warning {
