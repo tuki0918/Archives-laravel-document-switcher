@@ -10,8 +10,22 @@ class Tabs extends React.Component {
     super(props);
 
     this.state = {
+      currentId: false,
       tabs: [],
     };
+  }
+
+  getCurrentTabId() {
+    // TODO: グローバルから取得する
+    chrome.tabs.query(
+      {active: true, windowId: chrome.windows.WINDOW_ID_CURRENT},
+      tabs => {
+        let tab = tabs[0];
+        this.setState({
+          currentId: tab.id,
+        });
+      }
+    );
   }
 
   getTabList() {
@@ -36,6 +50,8 @@ class Tabs extends React.Component {
   }
 
   componentDidMount() {
+    // 開いているタブIDを取得する
+    this.getCurrentTabId();
     // 開いているタブ一覧を取得する
     this.getTabList();
   }
@@ -44,13 +60,14 @@ class Tabs extends React.Component {
     let tabs = this.state.tabs;
     let items = '';
     if (tabs.length) {
-      items = tabs.map(function(tab, i) {
+      items = tabs.map((tab, i) => {
         return (
           <Item key={'item-' + i}
                 id={tab.id}
                 url={tab.url}
                 title={tab.title}
                 favIconUrl={tab.favIconUrl}
+                currentId={this.state.currentId}
           />
         );
       });

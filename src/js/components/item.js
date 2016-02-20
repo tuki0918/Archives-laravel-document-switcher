@@ -29,10 +29,10 @@ class Item extends React.Component {
   }
 
   render() {
-    // TODO: 開いている状態のタブはactive状態にする
     let favIconUrl = this.props.favIconUrl ? this.props.favIconUrl : '/images/noimage.png';
+    let isActive = (this.props.id === this.props.currentId) ? 'active' : '';
     return (
-      <li className="list-group-item"
+      <li className={'list-group-item ' + isActive}
           data-tab-id={this.props.id}
           onClick={this.onClick}>
         <img className="img-circle media-object pull-left"
@@ -51,6 +51,7 @@ Item.propTypes = {
   url: React.PropTypes.string.isRequired,
   title: React.PropTypes.string.isRequired,
   favIconUrl: React.PropTypes.string,
+  currentId: React.PropTypes.any.isRequired,
 };
 
 export default Item;
