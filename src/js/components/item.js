@@ -6,6 +6,9 @@ class Item extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      err: false,
+    };
     this.onClick = this.onClick.bind(this);
   }
 
@@ -21,7 +24,18 @@ class Item extends React.Component {
           let tab = tabs[0];
           let moveProperties = {windowId: windowId, index: tab.index + 1};
           chrome.tabs.move(tagId, moveProperties, tab => {
-            chrome.tabs.update(tab.id, {selected: true});
+            let err = chrome.runtime.lastError;
+            if (err) {
+              this.setState({
+                err: err.message,
+              });
+              return;
+            }
+            chrome.tabs.update(tab.id, {selected: true}, tab => {
+              this.setState({
+                err: false,
+              });
+            });
           });
         }
       );
@@ -31,6 +45,9 @@ class Item extends React.Component {
   render() {
     let favIconUrl = this.props.favIconUrl ? this.props.favIconUrl : '/images/noimage.png';
     let isActive = (this.props.id === this.props.currentId) ? 'active' : '';
+    let error = (!this.state.err) ? '' : (
+        <p className="alert alert-warning">{this.state.err}</p>
+    );
     return (
       <li className={'list-group-item ' + isActive}
           data-tab-id={this.props.id}
@@ -41,6 +58,7 @@ class Item extends React.Component {
           <strong>{this.props.title}</strong>
           <p>{this.props.url}</p>
         </div>
+        {error}
       </li>
     );
   }

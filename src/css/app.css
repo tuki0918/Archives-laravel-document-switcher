@@ -37,3 +37,16 @@ html {
 li.list-group-item:hover {
     background-color: #eee;
 }
+
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.alert {
+    padding: 3px 6px;
+    margin-top: 6px;
+    border-radius: 3px;
+}
+
