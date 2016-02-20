@@ -31,6 +31,7 @@ html {
 .tab-item a {
     text-decoration: none;
     color: #333;
+    display: block;
 }
 
 li.list-group-item:hover {
