@@ -16,10 +16,10 @@ class Button extends React.Component {
     let isActive = (this.props.value === this.props.current) ? true : false;
     let btnClass = (isActive) ? 'active' : '';
     return (
-      <button className={ 'btn btn-default ' + btnClass }
-              value={ this.props.value }
+      <button className={'btn btn-default ' + btnClass}
+              value={this.props.value}
               onClick={this.handleClick}>
-        { this.props.name }
+        {this.props.name}
       </button>
     );
   }

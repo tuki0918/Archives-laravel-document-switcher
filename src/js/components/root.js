@@ -29,10 +29,10 @@ class Root extends React.Component {
     chrome.tabs.query(
       {active: true, windowId: chrome.windows.WINDOW_ID_CURRENT},
       tabs => {
-        let currentUrl = tabs[0].url;
-        let active = url.check(currentUrl) ? true : false;
+        let tab = tabs[0];
+        let active = url.check(tab.url) ? true : false;
         this.setState({
-          url: currentUrl,
+          url: tab.url,
           isActive: active,
         });
       }
@@ -57,10 +57,28 @@ class Root extends React.Component {
   render() {
     return (
       <div className="window">
+
         <Control {...this.state} />
-        <Link to="/favorite">お気に入り</Link>
-        <Link to="/history">履歴</Link>
-        {this.props.children}
+
+        <div className="tab-group">
+          <div className="tab-item">
+            <Link to="/tabs">開いてるタブ</Link>
+          </div>
+          <div className="tab-item">
+            <Link to="/favorite">お気に入り</Link>
+          </div>
+          <div className="tab-item">
+            <Link to="/history">履歴</Link>
+          </div>
+        </div>
+
+        <div className="window-content">
+          <div className="pane-group">
+            <div className="pane">
+              {this.props.children}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

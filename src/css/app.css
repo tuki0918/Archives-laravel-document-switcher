@@ -3,6 +3,14 @@ html {
     height: 500px;
 }
 
+.window {
+    background-color: #eee;
+}
+
+.tabs {
+    background-color: #f5f5f4;
+}
+
 .list-group-item .icon {
     font-size: 20px;
 }
@@ -14,4 +22,17 @@ html {
 .btn-default.hidden {
     background-color: #ddd;
     background-image: none;
+}
+
+.tab-item:after {
+    content: normal;
+}
+
+.tab-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+li.list-group-item:hover {
+    background-color: #eee;
 }

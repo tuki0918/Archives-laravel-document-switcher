@@ -55,7 +55,7 @@ class Control extends React.Component {
           <div className="btn-group">
             {this.props.versions.map(function(version, i) {
               return (
-                <Button key={i}
+                <Button key={'btn-' + i}
                         name={version.name}
                         value={version.value}
                         current={this.state.current}
@@ -65,9 +65,9 @@ class Control extends React.Component {
             }, this)}
           </div>
 
-          <button className={ 'btn btn-default ' + btnClass } onClick={this.onClick}>
+          <button className={'btn btn-default ' + btnClass} onClick={this.onClick}>
             <span className="icon icon-book-open icon-text"></span>
-            Move to JP Doc
+            日本語ドキュメント
           </button>
 
         </div>
