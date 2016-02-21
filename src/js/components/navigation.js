@@ -20,7 +20,6 @@ class Navigation extends React.Component {
     return [
       {link: '/tabs', name: '開いてるタブ'},
       {link: '/favorite', name: 'お気に入り'},
-      {link: '/history', name: '履歴'},
     ];
   }
 
