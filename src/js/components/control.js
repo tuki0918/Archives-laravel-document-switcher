@@ -17,8 +17,11 @@ class Control extends React.Component {
   }
 
   componentDidMount() {
+    // 設定を取得
+    this.getConfig();
+  }
 
-    // get option
+  getConfig() {
     chrome.storage.local.get(['current'], storage => {
       if (!chrome.runtime.lastError) {
         this.setState({
