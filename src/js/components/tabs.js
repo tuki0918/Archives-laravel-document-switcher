@@ -43,6 +43,8 @@ class Tabs extends React.Component {
         });
       });
 
+      data.reverse();
+
       this.setState({
         tabs: data,
       });
