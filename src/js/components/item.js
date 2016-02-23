@@ -8,8 +8,11 @@ class Item extends React.Component {
     this.state = {
       deleted: false,
       err: false,
+      url: props.url,
+      newOpen: props.newOpen ? true : false,
     };
     this.onMove = this.onMove.bind(this);
+    this.onOpen = this.onOpen.bind(this);
     this.onClose = this.onClose.bind(this);
   }
 
@@ -42,6 +45,10 @@ class Item extends React.Component {
     }
   }
 
+  onOpen() {
+    chrome.tabs.create({url: this.state.url});
+  }
+
   onClose() {
     let tagId = this.props.id;
     if (tagId) {
@@ -65,14 +72,17 @@ class Item extends React.Component {
     let favIconUrl = this.props.favIconUrl ? this.props.favIconUrl : '/images/noimage.png';
     let isActive = (this.props.id === this.props.currentId) ? 'active' : '';
     let isHidden = (this.state.deleted) ? 'hidden' : '';
+    let button = (this.state.newOpen) ? '' : (
+      <span className="icon icon-cancel-circled pull-right close"
+            onClick={this.onClose}></span>
+    );
     let error = (!this.state.err) ? '' : (
         <p className="alert alert-warning">{this.state.err}</p>
     );
     return (
       <li className={'list-group-item ' + isActive + ' ' + isHidden}>
-        <span className="icon icon-cancel-circled pull-right close"
-             onClick={this.onClose}></span>
-        <div onClick={this.onMove}>
+        {button}
+        <div onClick={this.state.newOpen ? this.onOpen : this.onMove}>
           <img className="img-circle media-object pull-left"
                src={favIconUrl} width="32" height="32" />
           <div className="media-body">
@@ -92,6 +102,7 @@ Item.propTypes = {
   title: React.PropTypes.string.isRequired,
   favIconUrl: React.PropTypes.string,
   currentId: React.PropTypes.any.isRequired,
+  newOpen: React.PropTypes.bool,
 };
 
 export default Item;

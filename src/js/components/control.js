@@ -51,6 +51,7 @@ class Control extends React.Component {
 
   render() {
     let isActive = (this.props.isActive) ? true : false;
+    let isFavorite = (this.props.isFavorite) ? 'icon-star' : 'icon-star-empty';
     let btnClass = (isActive) ? '' : 'hidden';
     return (
       <header className="toolbar toolbar-header">
@@ -73,6 +74,10 @@ class Control extends React.Component {
             日本語ドキュメント
           </button>
 
+          <button className="btn btn-default pull-right" onClick={this.props.onToggleFavorite}>
+            <span className={'icon ' + isFavorite}></span>
+          </button>
+
         </div>
       </header>
     );
@@ -83,6 +88,7 @@ Control.propTypes = {
   url: React.PropTypes.string.isRequired,
   isActive: React.PropTypes.bool.isRequired,
   versions: React.PropTypes.array.isRequired,
+  isFavorite: React.PropTypes.bool.isRequired,
 };
 
 Control.defaultProps = {
