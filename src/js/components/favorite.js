@@ -11,6 +11,7 @@ class Favorite extends React.Component {
     this.state = {
       favorites: [],
     };
+    this.onFavoriteDelete = this.onFavoriteDelete.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +32,17 @@ class Favorite extends React.Component {
     });
   }
 
+  onFavoriteDelete(url) {
+    let favorites = this.state.favorites;
+    _.remove(favorites, tab => {
+      return tab.url === url;
+    });
+    this.setState({
+      favorites: favorites,
+    });
+    chrome.storage.local.set({favorites: favorites});
+  }
+
   render() {
     let favorites = this.state.favorites;
     let items = '';
@@ -43,6 +55,7 @@ class Favorite extends React.Component {
                 title={tab.title}
                 favIconUrl={tab.favIconUrl}
                 currentId={false}
+                onFavoriteDelete={this.onFavoriteDelete}
           />
         );
       });

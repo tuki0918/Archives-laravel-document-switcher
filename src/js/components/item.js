@@ -16,6 +16,7 @@ class Item extends React.Component {
     this.onMove = this.onMove.bind(this);
     this.onOpen = this.onOpen.bind(this);
     this.onClose = this.onClose.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   onMove() {
@@ -70,20 +71,21 @@ class Item extends React.Component {
     }
   }
 
+  onDelete() {
+    this.props.onFavoriteDelete(this.state.url);
+  }
+
   render() {
     let favIconUrl = this.props.favIconUrl ? this.props.favIconUrl : '/images/noimage.png';
     let isActive = (this.props.id === this.props.currentId) ? 'active' : '';
     let isHidden = (this.state.deleted) ? 'hidden' : '';
-    let button = (this.state.type === ITEM_TYPE_TAB) ?  (
-      <span className="icon icon-cancel-circled pull-right close"
-            onClick={this.onClose}></span>
-    ) : '';
     let error = (!this.state.err) ? '' : (
         <p className="alert alert-warning">{this.state.err}</p>
     );
     return (
       <li className={'list-group-item ' + isActive + ' ' + isHidden}>
-        {button}
+        <span className="icon icon-cancel-circled pull-right close"
+              onClick={(this.state.type === ITEM_TYPE_TAB) ? this.onClose : this.onDelete}></span>
         <div onClick={(this.state.type === ITEM_TYPE_TAB) ? this.onMove : this.onOpen}>
           <img className="img-circle media-object pull-left"
                src={favIconUrl} width="32" height="32" />
@@ -105,6 +107,7 @@ Item.propTypes = {
   favIconUrl: React.PropTypes.string,
   currentId: React.PropTypes.any.isRequired,
   type: React.PropTypes.number,
+  onFavoriteDelete: React.PropTypes.func,
 };
 
 export default Item;
