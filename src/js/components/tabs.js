@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Item from './item';
+import { ITEM_TYPE_TAB } from '../const/item';
 import url from '../lib/url';
 
 class Tabs extends React.Component {
@@ -69,6 +70,7 @@ class Tabs extends React.Component {
                 title={tab.title}
                 favIconUrl={tab.favIconUrl}
                 currentId={this.state.currentId}
+                type={ITEM_TYPE_TAB}
           />
         );
       });

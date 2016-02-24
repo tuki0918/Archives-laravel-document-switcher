@@ -43,7 +43,6 @@ class Favorite extends React.Component {
                 title={tab.title}
                 favIconUrl={tab.favIconUrl}
                 currentId={false}
-                newOpen={true}
           />
         );
       });

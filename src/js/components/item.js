@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ITEM_TYPE_TAB } from '../const/item';
+
 class Item extends React.Component {
 
   constructor(props) {
@@ -9,7 +11,7 @@ class Item extends React.Component {
       deleted: false,
       err: false,
       url: props.url,
-      newOpen: props.newOpen ? true : false,
+      type: props.type,
     };
     this.onMove = this.onMove.bind(this);
     this.onOpen = this.onOpen.bind(this);
@@ -72,17 +74,17 @@ class Item extends React.Component {
     let favIconUrl = this.props.favIconUrl ? this.props.favIconUrl : '/images/noimage.png';
     let isActive = (this.props.id === this.props.currentId) ? 'active' : '';
     let isHidden = (this.state.deleted) ? 'hidden' : '';
-    let button = (this.state.newOpen) ? '' : (
+    let button = (this.state.type === ITEM_TYPE_TAB) ?  (
       <span className="icon icon-cancel-circled pull-right close"
             onClick={this.onClose}></span>
-    );
+    ) : '';
     let error = (!this.state.err) ? '' : (
         <p className="alert alert-warning">{this.state.err}</p>
     );
     return (
       <li className={'list-group-item ' + isActive + ' ' + isHidden}>
         {button}
-        <div onClick={this.state.newOpen ? this.onOpen : this.onMove}>
+        <div onClick={(this.state.type === ITEM_TYPE_TAB) ? this.onMove : this.onOpen}>
           <img className="img-circle media-object pull-left"
                src={favIconUrl} width="32" height="32" />
           <div className="media-body">
@@ -102,7 +104,7 @@ Item.propTypes = {
   title: React.PropTypes.string.isRequired,
   favIconUrl: React.PropTypes.string,
   currentId: React.PropTypes.any.isRequired,
-  newOpen: React.PropTypes.bool,
+  type: React.PropTypes.number,
 };
 
 export default Item;
