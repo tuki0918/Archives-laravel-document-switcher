@@ -34,7 +34,10 @@ class Control extends React.Component {
   onClick() {
     if (this.props.isActive) {
       let newURL = url.convert(this.props.url, this.state.current);
-      chrome.tabs.create({url: newURL});
+      chrome.tabs.create({
+        url: newURL,
+        index: this.props.tabIndex + 1,
+      });
     }
   }
 
@@ -89,6 +92,7 @@ Control.propTypes = {
   isActive: React.PropTypes.bool.isRequired,
   versions: React.PropTypes.array.isRequired,
   isFavorite: React.PropTypes.bool.isRequired,
+  tabIndex: React.PropTypes.number.isRequired,
 };
 
 Control.defaultProps = {

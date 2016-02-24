@@ -17,6 +17,7 @@ class Root extends React.Component {
       isActive: false,
       favorites: [],
       isFavorite: false,
+      tabIndex: 0,
     };
 
     this.onToggleFavorite = this.onToggleFavorite.bind(this);
@@ -42,6 +43,7 @@ class Root extends React.Component {
         this.setState({
           url: tab.url,
           isActive: active,
+          tabIndex: tab.index,
         });
       }
     );
