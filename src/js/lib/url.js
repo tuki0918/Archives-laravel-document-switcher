@@ -5,7 +5,7 @@ const FLG_JPN_DOC = 1;
 const FLG_NOT_DOC = 0;
 
 const REGEX_LARAVEL_ENG_DOC_URL = /^https?:\/\/laravel\.com\/docs\/.*$/;
-const REGEX_LARAVEL_JPN_DOC_URL = /^https?:\/\/readouble\.com\/laravel\/.+\/ja\/.*$/;
+const REGEX_LARAVEL_JPN_DOC_URL = /^https?:\/\/readouble\.com\/laravel\/.+\/(ja|en)\/.*$/;
 
 const KEY_VERSION = '##VERSION##';
 const KEY_PATH    = '##PATH##';
