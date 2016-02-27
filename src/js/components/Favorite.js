@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Item from './item';
+import Item from './Item';
 
 class Favorite extends React.Component {
 

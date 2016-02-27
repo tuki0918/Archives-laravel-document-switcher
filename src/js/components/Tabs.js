@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Item from './item';
+import Item from './Item';
 import { ITEM_TYPE_TAB } from '../const/item';
 import url from '../lib/url';
 

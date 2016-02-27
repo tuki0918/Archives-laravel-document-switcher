@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from './button';
+import Button from './Button';
 import url from '../lib/url';
 
 class Control extends React.Component {

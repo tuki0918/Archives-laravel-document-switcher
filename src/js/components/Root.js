@@ -2,8 +2,8 @@ import React from 'react';
 import fetch from 'isomorphic-fetch';
 import _ from 'lodash';
 
-import Control from './control';
-import Navigation from './navigation';
+import Control from './Control';
+import Navigation from './Navigation';
 import url from '../lib/url';
 
 class Root extends React.Component {
