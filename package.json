@@ -9,6 +9,7 @@
     "url": "git@github.com:tuki0918/laravel-document-switcher.git"
   },
   "dependencies": {
+    "flux": "^2.1.1",
     "history": "^1.17.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.5.0",
