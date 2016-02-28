@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import FavoriteActions from '../actions/FavoriteActions';
+import FavoriteStore from '../stores/FavoriteStore';
 import Item from './Item';
 
 class Favorite extends React.Component {
@@ -9,38 +11,29 @@ class Favorite extends React.Component {
     super(props);
 
     this.state = {
-      favorites: [],
+      favorites: []
     };
+
     this.onFavoriteDelete = this.onFavoriteDelete.bind(this);
+    this._onChangeFavorites = this._onChangeFavorites.bind(this);
   }
 
   componentDidMount() {
-    this.getFavorites();
+    FavoriteStore.addChangeListener(this._onChangeFavorites);
+    FavoriteActions.updated();
   }
 
-  getFavorites() {
-    chrome.storage.local.get(['favorites'], storage => {
-      if (!chrome.runtime.lastError) {
-        let favorites = storage.favorites;
-        if (favorites) {
-          favorites.reverse();
-          this.setState({
-            favorites: favorites,
-          });
-        }
-      }
+  _onChangeFavorites() {
+    this.setState({
+      favorites: FavoriteStore.getFavorites()
     });
   }
 
   onFavoriteDelete(url) {
-    let favorites = this.state.favorites;
-    _.remove(favorites, tab => {
-      return tab.url === url;
+    FavoriteActions.remove(url);
+    chrome.storage.local.set({
+      favorites: FavoriteStore.getFavorites()
     });
-    this.setState({
-      favorites: favorites,
-    });
-    chrome.storage.local.set({favorites: favorites});
   }
 
   render() {
